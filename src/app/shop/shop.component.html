@@ -1,0 +1,11 @@
+<img width="40px" class="shopbutton" src="../../assets/images/cart.png" (click) = toggleShop()>
+<div class="shop" *ngIf="isOpen==true">
+  <h2 (click)="toggleShop()" style="text-align: right;">X</h2>
+  <h1 style="text-align:center; padding-bottom:30px;">The Dogeshop</h1>
+  <ul>
+    <li (click)="clickMultiply()">Dogecoins per Click: {{(20 * shopmultiplier[0]) | number: '1.0-0'}}</li>
+    <li (click)="clickAuto()">Dogecoins each Seconds: {{(100 * shopmultiplier[1]) | number: '1.0-0'}}</li>
+    <li *ngIf="staticElon == false" (click)="clickElon()">Elon musk: {{(5000) | number: '1.0-0'}}</li>
+    <h4 style="text-align:center; color:red; padding-right:29px;">{{notification}}</h4>
+  </ul>
+</div>
