@@ -10,31 +10,33 @@ export class NavbarComponent implements OnInit {
   static dogeCoin:number = 1;
   static multiplier:number = 1.2;
   static auto:number = 1;
-  static freq:number = 100;
   static elon:boolean = false;
-  savecoins:string="";
   interval :any;
 
   @HostListener('document:click', ['$event'])
   clickout(event : any) {
     if(this.eRef.nativeElement.contains(event.target)) {
       NavbarComponent.dogeCoin = NavbarComponent.dogeCoin + NavbarComponent.multiplier + 1 * NavbarComponent.multiplier;
-      this.savecoins = NavbarComponent.toString();
-      this.cookie.set("dogeCoin", this.savecoins);
     }
   }
 
-   constructor(private eRef: ElementRef, private cookie: CookieService) {
-    NavbarComponent.dogeCoin = 0;
-  }
+   constructor(private eRef: ElementRef, private cookie: CookieService) {}
 
   ngOnInit() {
     if(this.cookie.check("dogeCoin"))
+    {
       NavbarComponent.dogeCoin = +this.cookie.get("dogeCoin");
-    
+      NavbarComponent.multiplier = +this.cookie.get("multiplier");
+      NavbarComponent.auto = +this.cookie.get("auto");
+      NavbarComponent.elon = "true" == this.cookie.get("elon");
+    }
     this.interval = setInterval(() => {
       NavbarComponent.dogeCoin = NavbarComponent.dogeCoin + NavbarComponent.auto;
-  },NavbarComponent.freq)
+      this.cookie.set("dogeCoin", NavbarComponent.dogeCoin.toString());
+      this.cookie.set("multiplier", NavbarComponent.multiplier.toString());
+      this.cookie.set("auto", NavbarComponent.auto.toString());
+      this.cookie.set("elon", NavbarComponent.elon.toString());
+  },100)
   }
 
   get staticDogecoin(){
@@ -47,10 +49,6 @@ export class NavbarComponent implements OnInit {
 
   get staticauto(){
     return NavbarComponent.auto;
-  }
-
-  get staticfreq(){
-    return NavbarComponent.freq;
   }
 
   get staticElon(){

@@ -8,9 +8,15 @@
     border:3px solid;
 }
 .shopbutton{
-    padding-right:0px;
+    text-align:center;
+}
+ul{
     text-align:center;
 }
 ul > li{
     margin-bottom:5px;
+    font-size:20px;
+}
+li > img{
+    margin-left:7px;
 }
