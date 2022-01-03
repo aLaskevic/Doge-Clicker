@@ -1,6 +1,7 @@
 <div class="dogeBar" (click) = "clickout($event)">
+  <img @fadeIn *ngIf="coinClick" src="assets/images/Dogecoin.png" width="100px" class="hvcenter">
   <img src="assets/images/Dogecoin.png" width="250px">
   <h1 class="dogeCounter">Doge Coins: {{staticDogecoin | number: '1.0-0'}}</h1>
   <h3 class="">Multiplier: {{staticMultiplier}} | D/Seconds: {{staticauto * 10}}</h3>
-  <img width="100%" src="assets/images/elon.png" *ngIf="staticElon == true">
+  <img width="20%" class="hvcenter" src="assets/images/elon.png" *ngIf="staticElon == true">
 </div>

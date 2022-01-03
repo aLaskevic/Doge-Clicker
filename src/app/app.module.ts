@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CookieService } from 'ngx-cookie-service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './Navbar/Navbar.component';
 import { ShopComponent } from './shop/shop.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [		
@@ -14,9 +17,10 @@ import { ShopComponent } from './shop/shop.component';
    ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
-  providers: [NavbarComponent],
+  providers: [NavbarComponent, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
