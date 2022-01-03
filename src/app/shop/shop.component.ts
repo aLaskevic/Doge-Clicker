@@ -1,6 +1,7 @@
 import { NavbarComponent } from './../Navbar/Navbar.component';
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
+import { AudioService } from 'src/shared/Audio.service';
 import {
   trigger,
   state,
@@ -37,7 +38,8 @@ export class ShopComponent implements OnInit {
   notification:string = "";
   shopmultiplier:number[] = [1.2,1.2,1.2];
 
-  constructor(private cookie:CookieService) { }
+
+  constructor(private cookie:CookieService, private audioplayer:AudioService) { }
 
   ngOnInit() {
     if(this.cookie.check("sm1") && this.cookie.check("dogeCoin"))
@@ -59,6 +61,7 @@ export class ShopComponent implements OnInit {
       this.shopmultiplier[0] = this.shopmultiplier[0] * 1.252;
       this.notification = ""
       this.cookie.set("sm1", this.shopmultiplier[0].toString());
+      this.audioplayer.playAudio("assets/wav/buyItem.wav")
     }
     else
       this.notification = "Not enough DogeCoins!"
@@ -72,6 +75,7 @@ export class ShopComponent implements OnInit {
       this.shopmultiplier[1] = this.shopmultiplier[1] * 1.252;
       this.notification = ""
       this.cookie.set("sm2", this.shopmultiplier[1].toString());
+      this.audioplayer.playAudio("assets/wav/buyItem.wav")
     }
     else
       this.notification = "Not enough DogeCoins!"
@@ -84,6 +88,7 @@ export class ShopComponent implements OnInit {
       NavbarComponent.dogeCoin -= 5000;
       NavbarComponent.multiplier += 10;
       NavbarComponent.auto += 10;
+      this.audioplayer.playAudio("assets/wav/elon.mp3")
       this.notification = "TO THE MOOOOON!";
     }
     else

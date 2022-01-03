@@ -1,3 +1,4 @@
+import { AudioService } from '../shared/Audio.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CookieService } from 'ngx-cookie-service';
@@ -20,7 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     BrowserAnimationsModule
   ],
-  providers: [NavbarComponent, CookieService],
+  providers: [NavbarComponent, CookieService, AudioService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

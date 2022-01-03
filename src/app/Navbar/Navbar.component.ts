@@ -1,6 +1,7 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Component, OnInit, ElementRef, HostListener } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
+import { AudioService } from 'src/shared/Audio.service';
 import {
   trigger,
   state,
@@ -17,10 +18,10 @@ import {
     trigger('fadeIn',[
       transition(':leave', [
       style({ opacity: 0})  ,
-      animate('500ms', style({
+      animate('250ms', style({
         opacity: 1 , 
         top: '3%',
-        transform:'rotateY(180deg)'
+        transform:'rotateY(180deg)',
       }))
       ])
     ])
@@ -34,15 +35,17 @@ export class NavbarComponent implements OnInit {
   coinClick:boolean = false;
   interval :any;
 
+  constructor(private eRef: ElementRef, private cookie: CookieService, private audioplayer:AudioService) {}
+
   @HostListener('document:click', ['$event'])
   clickout(event : any) {
     if(this.eRef.nativeElement.contains(event.target)) {
       NavbarComponent.dogeCoin = NavbarComponent.dogeCoin + NavbarComponent.multiplier + 1 * NavbarComponent.multiplier;
       this.coinClick = !this.coinClick;
+      this.audioplayer.playAudio("assets/wav/coin.wav");
     }
   }
 
-   constructor(private eRef: ElementRef, private cookie: CookieService) {}
 
   ngOnInit() {
     if(this.cookie.check("dogeCoin"))
